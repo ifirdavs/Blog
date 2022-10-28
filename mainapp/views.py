@@ -15,7 +15,7 @@ class BlogView(View):
         if request.user.is_authenticated:
             data = {
                 'articles': Article.objects.filter(author__user=request.user),
-                'authors': Author.objects.all(),
+                
             }
             return render(request, 'blog.html', data)
         return redirect('/login')
@@ -26,9 +26,9 @@ class BlogView(View):
             date=request.POST.get('date'),
             topic=request.POST.get('topic'),
             text=request.POST.get('text'),
-            author=Author.objects.get(id=request.POST.get('author')),
+            author=Author.objects.get(user=request.user),
         )
-        return redirect('/blogs')
+        return redirect('/blog')
 
 class ArticleView(View):
     def get(self, request, pk):
