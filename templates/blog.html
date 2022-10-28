@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+    <title>Blog</title>
+    <br>
+    <br>
+    <br>
+    <h2>Blog</h2>
+    <hr>
+    <br>
+    {% for i in articles %}
+    <a href="/blog/article/{{i.id}}"><h4>{{i.id}}. {{i.head}}, {{i.author.name}}</h4></a>
+    {% endfor %}
+    <br>
+    <hr>
+    <br>
+    <h2>Create an Article: </h2>
+    <form action="/blogs" method="post">{% csrf_token %}
+        <label for="head">Head: </label>
+        <input type="text" id="head" name="head"><br>
+        <label for="date">Date: </label>
+        <input type="date" id="date" name="date"><br>
+        <label for="topic">Topic: </label>
+        <input type="text" id="topic" name="topic"><br>
+        <label for="text">Text: </label>
+        <input type="text" id="text" name="text"><br>
+        <label for="author">Author: </label>
+        <select id="author" name="author">
+            {% for i in authors %}
+            <option value="{{i.id}}">{{i.name}}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <a style="text-decoration: none; position: absolute; top: 20px; right: 30px;" href="/logout">
+        <button>Log out</button>
+    </a>
+
+</body>
+</html>
