@@ -1,0 +1,2 @@
+# Blog
+Blog Django Project
