@@ -1,2 +1,3 @@
 # Blog
-Blog Django Project
+
+Author Article Post django project
